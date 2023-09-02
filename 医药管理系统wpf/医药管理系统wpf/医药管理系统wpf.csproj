@@ -71,10 +71,38 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FrmRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmView_Agency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmView_Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmView_Medicine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FrmMain.xaml.cs">
       <DependentUpon>FrmMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRegister.xaml.cs">
+      <DependentUpon>FrmRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmView_Agency.xaml.cs">
+      <DependentUpon>FrmView_Agency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmView_Client.xaml.cs">
+      <DependentUpon>FrmView_Client.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FrmView_Medicine.xaml.cs">
+      <DependentUpon>FrmView_Medicine.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

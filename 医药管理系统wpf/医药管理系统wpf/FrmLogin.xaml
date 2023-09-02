@@ -8,7 +8,12 @@
         Title="FrmLogin" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
         >
-    
+    <Window.Resources>
+        <Style TargetType="Control">
+            <Setter Property="FontFamily" Value="Microsoft YaHei"></Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"></RowDefinition>
@@ -21,19 +26,19 @@
             <ColumnDefinition Width="40*"></ColumnDefinition>
             <ColumnDefinition Width="30*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        <Label Grid.Row="0" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" FontFamily="微软雅黑">医药管理系统</Label>
-        
+
+        <Label Grid.Row="0" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center">医药管理系统</Label>
+
         <!--登录信息框-->
         <GroupBox Grid.ColumnSpan="3" Grid.RowSpan="2"  Grid.Row="1" Margin="30" FontSize="30">登录信息</GroupBox>
         <Label Grid.Row="1" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Bottom">账号：</Label>
         <TextBox Grid.Row="1" Grid.Column="1" Height="30" VerticalAlignment="Bottom" Margin="5" VerticalContentAlignment="Center"></TextBox>
         <Label Grid.Row="2" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Top">密码：</Label>
         <PasswordBox Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="5" VerticalContentAlignment="Center"></PasswordBox>
-        
+
         <!--登录退出按钮-->
-        <Button x:Name="btn_Login" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="40" Content="登录" FontSize="26" Click="btn_Login_Click"></Button>
-        <Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Height="40" Content="退出" FontSize="26"></Button>
-        <Button Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100" Height="40" Content="注册" FontSize="26"></Button>
+        <Button x:Name="btn_Login" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="40" Content="登录" FontSize="26" Click="btn_Login_Click" Margin="0,0,0,69" Grid.RowSpan="2"></Button>
+        <Button x:Name="btn_Exit" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Height="40" Content="退出" FontSize="26" Click="btn_Exit_Click"></Button>
+        <Button x:Name="btn_Register" Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100" Height="40" Content="注册" FontSize="26" Click="btn_Register_Click"></Button>
     </Grid>
 </Window>

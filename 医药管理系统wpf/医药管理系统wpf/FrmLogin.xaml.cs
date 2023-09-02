@@ -23,18 +23,36 @@ namespace 医药管理系统wpf
         public FrmLogin()
         {
             InitializeComponent();
+            this.Loaded += FrmLogin_Loaded;
         }
 
-
+        private void FrmLogin_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.btn_Login.Focus();
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
+
+        //登录按钮
         private void btn_Login_Click(object sender, RoutedEventArgs e)
         {
             FrmMain frmMain = new FrmMain();
+            frmMain.Show();
+        }
+
+        //退出按钮
+        private void btn_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btn_Register_Click(object sender, RoutedEventArgs e)
+        {
+            FrmRegister frmMain = new FrmRegister();
             frmMain.Show();
         }
     }

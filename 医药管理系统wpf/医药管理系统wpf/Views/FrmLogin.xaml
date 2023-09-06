@@ -49,7 +49,7 @@
         <Label Grid.Row="2" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Top">密码：</Label>
         
         <!--密码框-->
-        <PasswordBox x:Name="txt_LoginPwd" local:PasswordHelper.BoundPassword="{Binding LoginPwd, Mode=TwoWay}"
+        <PasswordBox x:Name="txt_LoginPwd" local:PasswordBindingHelper.Password="{Binding LoginPwd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <PasswordBox.Style>
                 <Style TargetType="PasswordBox">
@@ -63,7 +63,8 @@
             </PasswordBox.Style>
         </PasswordBox>
 
-        
+
+
         <!--登录退出按钮-->
         <Button Command="{Binding LoginCommand}" x:Name="btn_Login" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="40" Content="登录" FontSize="26" Margin="0,0,0,69" Grid.RowSpan="2"></Button>
         <Button Command="{Binding ExitCommand}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Height="40" Content="退出" FontSize="26"></Button>

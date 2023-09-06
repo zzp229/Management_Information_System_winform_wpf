@@ -35,8 +35,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,7 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="FrmLogin.xaml">
+    <Page Include="Views\FrmLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,45 +79,59 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FrmLogin.xaml.cs">
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Agency.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Medicine.cs" />
+    <Compile Include="ViewModels\FrmLoginViewModel.cs" />
+    <Compile Include="ViewModels\FrmRegisterViewModel.cs" />
+    <Compile Include="ViewModels\FrmView_AgencyViewModel.cs" />
+    <Compile Include="ViewModels\FrmView_ClientViewModel.cs" />
+    <Compile Include="ViewModels\FrmView_MedicineViewModel.cs" />
+    <Compile Include="ViewModels\Manager\InfoManager.cs" />
+    <Compile Include="ViewModels\Manager\LoginManager.cs" />
+    <Compile Include="Views\Helper\PasswordHelper.cs" />
+    <Compile Include="Service\SQLHelper.cs" />
+    <Compile Include="ViewModels\FrmMainViewModel.cs" />
+    <Compile Include="Views\FrmLogin.xaml.cs">
       <DependentUpon>FrmLogin.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="FrmMain.xaml">
+    <Page Include="Views\FrmMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FrmRegister.xaml">
+    <Page Include="Views\FrmRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FrmView_Agency.xaml">
+    <Page Include="Views\FrmView_Agency.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FrmView_Client.xaml">
+    <Page Include="Views\FrmView_Client.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FrmView_Medicine.xaml">
+    <Page Include="Views\FrmView_Medicine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmMain.xaml.cs">
+    <Compile Include="Views\FrmMain.xaml.cs">
       <DependentUpon>FrmMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FrmRegister.xaml.cs">
+    <Compile Include="Views\FrmRegister.xaml.cs">
       <DependentUpon>FrmRegister.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FrmView_Agency.xaml.cs">
+    <Compile Include="Views\FrmView_Agency.xaml.cs">
       <DependentUpon>FrmView_Agency.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FrmView_Client.xaml.cs">
+    <Compile Include="Views\FrmView_Client.xaml.cs">
       <DependentUpon>FrmView_Client.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FrmView_Medicine.xaml.cs">
+    <Compile Include="Views\FrmView_Medicine.xaml.cs">
       <DependentUpon>FrmView_Medicine.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -121,6 +151,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,5 +160,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

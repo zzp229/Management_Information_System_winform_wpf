@@ -1,0 +1,72 @@
+﻿<Window x:Class="医药管理系统wpf.Views.FrmLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:医药管理系统wpf" xmlns:viewmodels="clr-namespace:医药管理系统wpf.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:FrmMainViewModel}"
+        mc:Ignorable="d"
+        Title="FrmLogin" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Window.Resources>
+        <Style TargetType="Control">
+            <Setter Property="FontFamily" Value="Microsoft YaHei"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="32*"></RowDefinition>
+            <RowDefinition Height="23*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+            <ColumnDefinition Width="40*"></ColumnDefinition>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center">医药管理系统</Label>
+
+        <!--登录信息框-->
+        <GroupBox Grid.ColumnSpan="3" Grid.RowSpan="2"  Grid.Row="1" Margin="30" FontSize="30">登录信息</GroupBox>
+        <Label Grid.Row="1" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Bottom">账号：</Label>
+        <!--账号框-->
+        <TextBox x:Name="txt_LoginId" Text="{Binding LoginId}" Grid.Row="1" Grid.Column="1" Height="30" 
+                 HorizontalContentAlignment="Center"
+                 VerticalAlignment="Bottom" Margin="5" VerticalContentAlignment="Center">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ShouldFocusOnLoginId}" Value="True">
+                            <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=txt_LoginId}"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Label Grid.Row="2" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Top">密码：</Label>
+        
+        <!--密码框-->
+        <PasswordBox x:Name="txt_LoginPwd" local:PasswordHelper.BoundPassword="{Binding LoginPwd, Mode=TwoWay}"
+                     Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <PasswordBox.Style>
+                <Style TargetType="PasswordBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ShouldFocusOnLoginPwd}" Value="True">
+                            <!--触发器聚焦到那个位置-->
+                            <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=txt_LoginPwd}"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </PasswordBox.Style>
+        </PasswordBox>
+
+        
+        <!--登录退出按钮-->
+        <Button Command="{Binding LoginCommand}" x:Name="btn_Login" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="40" Content="登录" FontSize="26" Margin="0,0,0,69" Grid.RowSpan="2"></Button>
+        <Button Command="{Binding ExitCommand}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Height="40" Content="退出" FontSize="26"></Button>
+        <Button Command="{Binding RegisterCommand}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100" Height="40" Content="注册" FontSize="26"></Button>
+    </Grid>
+</Window>

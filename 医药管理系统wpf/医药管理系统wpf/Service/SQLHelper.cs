@@ -48,35 +48,6 @@ namespace 医药管理系统wpf.Service
             }
         }
 
-        public static DataSet GetDataSet1(string sql, params SqlParameter[] parameters)
-        {
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    if (parameters.Count() > 0)
-                        cmd.Parameters.AddRange(parameters);
-
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                    {
-                        try
-                        {
-                            conn.Open();
-                            DataSet dataSet = new DataSet();
-                            adapter.Fill(dataSet);
-
-                            return dataSet;
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-
-                    }
-                }
-            }
-        }
 
 
         /// <summary>

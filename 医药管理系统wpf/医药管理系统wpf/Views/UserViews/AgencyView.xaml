@@ -1,0 +1,43 @@
+﻿<Window x:Class="医药管理系统wpf.Views.AgencyView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:医药管理系统wpf.Views"
+        mc:Ignorable="d"
+        Title="AgencyView" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen"
+        Name="window"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label VerticalAlignment="Center" Margin="100 10">编号：</Label>
+        <TextBox Text="{Binding agency.Ano}" Width="100" Height="20"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="1">姓名：</Label>
+        <TextBox Text="{Binding agency.Aname}" Width="100" Height="20" Grid.Row="1"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="2">性别：</Label>
+        <ComboBox ItemsSource="{Binding AsexSource}" SelectedItem="{Binding AsexSeleted}" Width="100" Height="20" Grid.Row="2"></ComboBox>
+
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="3">电话：</Label>
+        <TextBox Text="{Binding agency.Aphone}" Width="100" Height="20" Grid.Row="3"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="4">备注：</Label>
+        <TextBox Text="{Binding agency.Aremark}" Width="100" Height="20" Grid.Row="4"></TextBox>
+
+        <!--这里绑定将整个窗口传过去-->
+        <Button Grid.Row="5" Width="80" Height="30"
+                Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=window}"
+                >保存</Button>
+    </Grid>
+</Window>
+

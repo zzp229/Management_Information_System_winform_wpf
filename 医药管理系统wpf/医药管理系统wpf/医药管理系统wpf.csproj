@@ -71,7 +71,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\Manager\AgencyManager.cs" />
+    <Compile Include="ViewModels\UserViewsModelView\AgencyViewModel.cs" />
+    <Compile Include="ViewModels\UserViewsModelView\ClientViewModel.cs" />
+    <Compile Include="ViewModels\UserViewsModelView\MedicineViewModel.cs" />
+    <Compile Include="Views\UserViews\AgencyView.xaml.cs">
+      <DependentUpon>AgencyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\ClientView.xaml.cs">
+      <DependentUpon>ClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\MedicineView.xaml.cs">
+      <DependentUpon>MedicineView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PasswordBindingHelper.cs" />
+    <Page Include="Views\UserViews\AgencyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\ClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FrmLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FrmView_Medicine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\MedicineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

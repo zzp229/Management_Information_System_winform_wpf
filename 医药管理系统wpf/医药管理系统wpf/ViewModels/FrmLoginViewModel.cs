@@ -15,6 +15,10 @@ namespace 医药管理系统wpf.ViewModels
     {
         public FrmLoginViewModel()
         {
+            //测试用
+            LoginId = "uu";
+            LoginPwd = "uu";
+
             //退出按钮
             ExitCommand = new RelayCommand(() =>
             {

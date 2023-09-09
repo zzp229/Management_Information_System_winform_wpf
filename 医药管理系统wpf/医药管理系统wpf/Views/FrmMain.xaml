@@ -35,7 +35,7 @@
         <Button Grid.Row="0" Grid.Column="3" Margin="9, 5, 9, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15, 5">注销账号</Button>
         <Label Grid.Row="1" Grid.Column="1">查询：</Label>
         <Label Grid.Row="1" Grid.Column="2">录入：</Label>
-        <ComboBox Name="cmb_Inquire" Grid.Row="2" Grid.Column="1" Margin="0, 5, 9, 0"></ComboBox>
+        <ComboBox ItemsSource="{Binding InquireList}" Name="cmb_Inquire" Grid.Row="2" Grid.Column="1" Margin="0, 5, 9, 0"></ComboBox>
         <ComboBox Grid.Row="2" Grid.Column="2" Margin="9, 5, 9, 0"></ComboBox>
         <Button x:Name="btn_Query" Grid.Row="3" Grid.Column="1" Margin="0, 5, 9, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15, 5" Click="btn_Query_Click">查询</Button>
         <Button Grid.Row="3" Grid.Column="2" Margin="9, 5, 9, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15, 5">录入</Button>

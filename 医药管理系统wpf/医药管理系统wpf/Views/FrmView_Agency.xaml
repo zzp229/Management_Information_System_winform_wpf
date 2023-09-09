@@ -5,7 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:医药管理系统wpf"
         mc:Ignorable="d"
-        Title="FrmView_Agency" Height="643" Width="806">
+        Title="FrmView_Agency" Height="643" Width="806"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- 删除按钮样式 -->
+        <Style x:Key="DeleteButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="DarkRed"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- 编辑按钮样式 -->
+        <Style x:Key="EditButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="DarkGreen"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"></RowDefinition>
@@ -14,7 +39,9 @@
             <RowDefinition Height="15*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" HorizontalAlignment="Center">经办人信息查询</Label>
+        <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">经办人信息查询</Label>
+        <Border Grid.Row="0" Margin="80 0 80 5" BorderBrush="Black" BorderThickness="0 0 0 1"></Border>
+        <!--<Line Grid.Row="0" Margin="80 0 80 5"></Line>-->
 
 
         <!--选择条件Box-->
@@ -32,27 +59,56 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">编号：</Label>
-                    <TextBox Grid.Row="0" Grid.Column="0" Width="100" Height="25"></TextBox>
+                    <TextBox Text="{Binding Ano}" Grid.Row="0" Grid.Column="0" Width="100" Height="25"></TextBox>
                     <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">性别：</Label>
-                    <ComboBox Name="cmb_asex" Grid.Row="0" Grid.Column="1" Width="100" Height="25"></ComboBox>
-                    <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">备注：</Label>
-                    <TextBox Grid.Row="0" Grid.Column="2" Width="100" Height="25"></TextBox>
+                    <ComboBox ItemsSource="{Binding Asex}" SelectedItem="{Binding AsexSeleted}" Name="cmb_asex" Grid.Row="0" Grid.Column="1" Width="100" Height="25"></ComboBox>
+                    <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">电话：</Label>
+                    <TextBox Text="{Binding Aphone}" Grid.Row="0" Grid.Column="2" Width="100" Height="25"></TextBox>
                     <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">姓名：</Label>
-                    <TextBox Grid.Row="1" Grid.Column="0" Width="100" Height="25"></TextBox>
-                    <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">姓名：</Label>
-                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Width="300" Height="25"></TextBox>
+                    <TextBox Text="{Binding Aname}" Grid.Row="1" Grid.Column="0" Width="100" Height="25"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">备注：</Label>
+                    <TextBox Text="{Binding Aremark}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Width="300" Height="25"></TextBox>
 
-                    <Button Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50">查询</Button>
+                    <Button Command="{Binding QueryCommand}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50">查询</Button>
                 </Grid>
             </GroupBox.Content>
         </GroupBox>
 
         
         <!--中间的数据框-->
-        <DataGrid Grid.Row="2" Margin="8">
+        <DataGrid ItemsSource="{Binding Agencies}" Grid.Row="2" Margin="8" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <!-- 其他数据列 -->
+                <DataGridTextColumn Header="编号" Binding="{Binding Ano}" Width="90"/>
+                <DataGridTextColumn Header="姓名" Binding="{Binding Aname}" Width="70"/>
+                <DataGridTextColumn Header="性别" Binding="{Binding Asex}" Width="50"/>
+                <DataGridTextColumn Header="电话" Binding="{Binding Aphone}" Width="100"/>
+                <DataGridTextColumn Header="备注" Binding="{Binding Aremark}" Width="200" />
+                <!-- 添加更多列，根据你的需求 -->
+
+                <!-- 删除按钮列 -->
+                <DataGridTemplateColumn Header="操作">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- 删除按钮 -->
+                                <Button Content="删除" Style="{StaticResource DeleteButtonStyle}" 
+                                        CommandParameter="{Binding Ano}"
+                                        Command="{Binding DataContext.DelCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"/>
+
+                                <!-- 编辑按钮 -->
+                                <Button Content="编辑" Style="{StaticResource EditButtonStyle}" 
+                                        CommandParameter="{Binding Ano}"
+                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
-        
-        
+
+
+
         <!--下面的按钮-->
         <WrapPanel Grid.Row="3" FlowDirection="RightToLeft">
             <Button Padding="15, 5" Margin="7">打印</Button>

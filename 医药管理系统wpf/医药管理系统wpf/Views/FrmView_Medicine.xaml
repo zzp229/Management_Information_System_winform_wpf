@@ -6,12 +6,51 @@
         xmlns:local="clr-namespace:医药管理系统wpf"
         mc:Ignorable="d"
         Title="FrmView_Medicine" Height="643" Width="806">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+
+        <Style TargetType="GroupBox">
+            <Setter Property="FontSize" Value="17"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="20*"></RowDefinition>
-            <RowDefinition Height="50*"></RowDefinition>
+            <RowDefinition Height="70*"></RowDefinition>
             <RowDefinition Height="20*"></RowDefinition>
         </Grid.RowDefinitions>
+        
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23">药品管理系统</TextBlock>
+        <Border Margin="50 0 50 0" BorderBrush="Black" BorderThickness="0 0 0 1"></Border>
+        
+        <!--筛选框-->
+        <GroupBox Grid.Row="1" Header="请选择查询的信息(默认查询全部)：" Margin="20 0 20 0">
+            <GroupBox.Content>
+                <Grid Grid.Row="1" Margin="10 0 10 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="编号："></Label>
+                    <TextBox Margin="60 5 5 5"></TextBox>
+
+                    <Label Grid.Column="1" Content="服用方法："></Label>
+                    <ComboBox Grid.Column="1" Margin="100 5 5 5"></ComboBox>
+
+                    <Label Grid.Row="1" Content="名称："></Label>
+                    <ComboBox Grid.Column="1" Margin="100 5 5 5"></ComboBox>
+                </Grid>
+            </GroupBox.Content>
+        </GroupBox>
+        
     </Grid>
 </Window>

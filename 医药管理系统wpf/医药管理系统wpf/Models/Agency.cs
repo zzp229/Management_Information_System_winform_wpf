@@ -21,5 +21,7 @@ namespace 医药管理系统wpf.Models
         public char Asex { get => asex; set => asex = value; }
         public string Aphone { get => aphone; set => aphone = value; }
         public string Aremark { get => aremark; set => aremark = value; }
+
+
     }
 }

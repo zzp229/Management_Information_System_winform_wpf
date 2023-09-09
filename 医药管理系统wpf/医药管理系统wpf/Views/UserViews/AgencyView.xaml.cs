@@ -11,21 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using 医药管理系统wpf.ViewModels;
+using 医药管理系统wpf.Models;
+using 医药管理系统wpf.ViewModels.UserViewsModelView;
 
-namespace 医药管理系统wpf
+namespace 医药管理系统wpf.Views
 {
     /// <summary>
-    /// FrmView_Client.xaml 的交互逻辑
+    /// AgencyView.xaml 的交互逻辑
     /// </summary>
-    public partial class FrmView_Client : Window
+    public partial class AgencyView : Window
     {
-        public FrmView_Client()
+        public AgencyView(Agency agency)
         {
             InitializeComponent();
 
-            FrmView_ClientViewModel frmView_ClientViewModel = new FrmView_ClientViewModel();
-            this.DataContext = frmView_ClientViewModel;
+            //绑定
+            this.DataContext = new AgencyViewModel(agency);
         }
     }
 }

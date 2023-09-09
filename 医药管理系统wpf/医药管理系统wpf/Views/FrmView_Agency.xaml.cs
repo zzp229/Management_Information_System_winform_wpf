@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using 医药管理系统wpf.ViewModels;
 
 namespace 医药管理系统wpf
 {
@@ -22,13 +23,15 @@ namespace 医药管理系统wpf
         public FrmView_Agency()
         {
             InitializeComponent();
+
+            FrmView_AgencyViewModel frmView_AgencyViewModel = new FrmView_AgencyViewModel();
+            this.DataContext = frmView_AgencyViewModel;
             this.Loaded += FrmView_Agency_Loaded;
         }
 
         private void FrmView_Agency_Loaded(object sender, RoutedEventArgs e)
         {
-            this.cmb_asex.Items.Add("男");
-            this.cmb_asex.Items.Add("女");
+            
         }
     }
 }

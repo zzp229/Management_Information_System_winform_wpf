@@ -12,12 +12,6 @@ namespace 医药管理系统wpf.ViewModels
 {
     internal class FrmMainViewModel:ViewModelBase
     {
-
-		
-
+        
     }
-
-
-    
-
 }

@@ -29,10 +29,10 @@ namespace 医药管理系统wpf.ViewModels.Manager
             DataRow dr = ds.Tables[0].Rows[0];
             Agency agency = new Agency()
             {
-                Aname = dr["aname"].ToString(),
-                Ano = Convert.ToString(dr["ano"]),
-                Aphone = Convert.ToString(dr["aphone"]),
-                Aremark = Convert.ToString(dr["aremark"]),
+                Aname = Convert.ToString(dr["aname"]).Trim(),    //之前没有Trim删掉空白
+                Ano = Convert.ToString(dr["ano"]).Trim(),
+                Aphone = Convert.ToString(dr["aphone"]).Trim(),
+                Aremark = Convert.ToString(dr["aremark"]).Trim(),
                 Asex = Char.Parse(dr["asex"].ToString()),
             };
 
@@ -53,6 +53,27 @@ namespace 医药管理系统wpf.ViewModels.Manager
                 new SqlParameter("@Ano", Ano)
             };
             return SQLHelper.Update(sql, parameters);
+        }
+
+
+        /// <summary>
+        /// 编辑更新
+        /// </summary>
+        /// <param name="agency"></param>
+        /// <returns></returns>
+        public static int UpdateAgencyByAno(Agency agency)
+        {
+            string sql = "update agency set aname=@aname, asex=@asex, aphone=@aphone, aremark=@aremark where ano = @ano;";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@ano", agency.Ano),
+                new SqlParameter("@aname", agency.Aname),
+                new SqlParameter("@asex", agency.Asex),
+                new SqlParameter("@aphone", agency.Aphone),
+                new SqlParameter("@aremark", agency.Aremark),
+            };
+
+            return SQLHelper.Update(sql, sqlParameters );
         }
     }
 }

@@ -75,6 +75,7 @@
     <Compile Include="ViewModels\UserViewsModelView\AgencyViewModel.cs" />
     <Compile Include="ViewModels\UserViewsModelView\ClientViewModel.cs" />
     <Compile Include="ViewModels\UserViewsModelView\MedicineViewModel.cs" />
+    <Compile Include="Views\Helper\CloseWindowMessage.cs" />
     <Compile Include="Views\UserViews\AgencyView.xaml.cs">
       <DependentUpon>AgencyView.xaml</DependentUpon>
     </Compile>

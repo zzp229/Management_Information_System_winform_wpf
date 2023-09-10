@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:医药管理系统wpf"
+        xmlns:local="clr-namespace:医药管理系统wpf" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="FrmView_Agency" Height="643" Width="806"
         WindowStartupLocation="CenterScreen">
@@ -28,6 +29,26 @@
             <Setter Property="Padding" Value="5,2"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
+
+        <!--设置行样式-->
+        <Style x:Key="dgRowStyle" TargetType="DataGridRow">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Green" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--设置表格样式-->
+        <Style x:Key="dgCellStyle" TargetType="DataGridCell">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
 
 
@@ -76,7 +97,8 @@
 
         
         <!--中间的数据框-->
-        <DataGrid ItemsSource="{Binding Agencies}" Grid.Row="2" Margin="8" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Agencies}" Grid.Row="2" Margin="8" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            
             <DataGrid.Columns>
                 <!-- 其他数据列 -->
                 <DataGridTextColumn Header="编号" Binding="{Binding Ano}" Width="90"/>
@@ -92,6 +114,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <!-- 删除按钮 -->
+                                <!--这里的Command需要有个DataContext前缀，因为单元格的DataContext是绑定的数据项-->
                                 <Button Content="删除" Style="{StaticResource DeleteButtonStyle}" 
                                         CommandParameter="{Binding Ano}"
                                         Command="{Binding DataContext.DelCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"/>
@@ -105,7 +128,34 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
+
+            <!--右键-->
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="删除选中项" Command="{Binding DeleteSelectedCommand}" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+
+            <!--行样式-->
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource dgRowStyle}" TargetType="DataGridRow"></Style>
+            </DataGrid.RowStyle>
+
+            <!--表格样式-->
+            <DataGrid.CellStyle>
+                <Style BasedOn="{StaticResource dgCellStyle}" TargetType="DataGridCell"></Style>
+            </DataGrid.CellStyle>
+
+            <!--实现双击也可以编辑-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItem.Ano, ElementName=dataGrid}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
         </DataGrid>
+        
+        
 
 
 

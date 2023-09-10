@@ -19,8 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label VerticalAlignment="Center" Margin="100 10">编号：</Label>
-        <TextBox Text="{Binding agency.Ano}" Width="100" Height="20"></TextBox>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center">修改经办人信息</Label>
 
         <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="1">姓名：</Label>
         <TextBox Text="{Binding agency.Aname}" Width="100" Height="20" Grid.Row="1"></TextBox>

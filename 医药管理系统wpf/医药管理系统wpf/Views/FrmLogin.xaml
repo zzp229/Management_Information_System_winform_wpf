@@ -48,6 +48,7 @@
         </TextBox>
         <Label Grid.Row="2" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Top">密码：</Label>
         
+        
         <!--密码框-->
         <PasswordBox x:Name="txt_LoginPwd" local:PasswordBindingHelper.Password="{Binding LoginPwd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="2" Grid.Column="1" Height="30" VerticalAlignment="Top" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">

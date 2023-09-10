@@ -12,6 +12,9 @@ using 医药管理系统wpf.Models;
 using 医药管理系统wpf.ViewModels.Manager;
 using 医药管理系统wpf.Views;
 using 医药管理系统wpf.ViewModels.UserViewsModelView;
+using GalaSoft.MvvmLight.Messaging;
+using 医药管理系统wpf.Views.Helper;
+using System.Windows.Controls;
 
 namespace 医药管理系统wpf.ViewModels
 {
@@ -26,7 +29,61 @@ namespace 医药管理系统wpf.ViewModels
             QueryCommand = new RelayCommand(FillDataGrid);
             DelCommand = new RelayCommand<string>(t =>Del(t));
             EditCommand = new RelayCommand<string>(t=>Edit(t));
+
+            //传递消息
+            Messenger.Default.Register<CloseWindowMessage>(this, HandleCloseWindowMessage);
+
+            //鼠标右键
+            DeleteSelectedCommand = new RelayCommand(DeleteSelected, CanDeleteSelected);    //第二个条件判断是否有选择
         }
+
+        #region 判断AgencyView是否点击了确认按钮
+        private void HandleCloseWindowMessage(CloseWindowMessage message)
+        {
+            // 处理窗口的返回值
+            bool dialogResult = message.AgencyView_DialogResult;
+            // 在这里可以根据 dialogResult 做相应的处理
+            //MessageBox.Show(dialogResult.ToString());
+            if(dialogResult)
+            {
+                MessageBox.Show("保存成功！");
+                FillDataGrid(); //更新一下列表
+            }
+        }
+        // 不要忘记在视图模型销毁时取消注册消息
+        public override void Cleanup()
+        {
+            Messenger.Default.Unregister(this);
+            base.Cleanup();
+        }
+        #endregion
+
+
+        #region 鼠标右键
+        public RelayCommand DeleteSelectedCommand { get; }
+
+        private bool CanDeleteSelected()
+        {
+            return dataGrid?.SelectedItems.Count > 0;
+        }
+
+        private void DeleteSelected()
+        {
+            //遍历选中
+            foreach (var selectedItem in dataGrid.SelectedItems.Cast<Agency>().ToList())
+            {
+                Del(selectedItem.Ano);
+                Agencies.Remove(selectedItem);
+            }
+        }
+
+        //View中的DataGrid要这样子传过来才行
+        private DataGrid dataGrid;
+        public void SetDataGrid(DataGrid grid)
+        {
+            dataGrid = grid;
+        }
+        #endregion
 
 
         #region 属性
@@ -200,11 +257,16 @@ namespace 医药管理系统wpf.ViewModels
         /// <param name="Ano"></param>
         private void Edit(string Ano)
         {
-            Agency agency = AgencyManager.GetAgencyByAno(Ano);
-            AgencyView agencyView = new AgencyView(agency);
-            //绑定ViewModel
-            agencyView.ShowDialog();
+            if(Ano != null)
+            {
+                Agency agency = AgencyManager.GetAgencyByAno(Ano);
+                AgencyView agencyView = new AgencyView(agency);
+                //绑定ViewModel
+                bool? @bool = agencyView.ShowDialog();
+            }
+            
 
         }
     }
+
 }

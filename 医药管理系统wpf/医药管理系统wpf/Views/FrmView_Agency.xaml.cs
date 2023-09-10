@@ -26,12 +26,8 @@ namespace 医药管理系统wpf
 
             FrmView_AgencyViewModel frmView_AgencyViewModel = new FrmView_AgencyViewModel();
             this.DataContext = frmView_AgencyViewModel;
-            this.Loaded += FrmView_Agency_Loaded;
+            (DataContext as FrmView_AgencyViewModel)?.SetDataGrid(dataGrid);
         }
 
-        private void FrmView_Agency_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

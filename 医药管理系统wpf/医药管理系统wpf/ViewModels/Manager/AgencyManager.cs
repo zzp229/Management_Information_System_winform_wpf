@@ -64,6 +64,22 @@ namespace 医药管理系统wpf.ViewModels.Manager
         public static int UpdateAgencyByAno(Agency agency)
         {
             string sql = "update agency set aname=@aname, asex=@asex, aphone=@aphone, aremark=@aremark where ano = @ano;";
+            
+
+            return SQLHelper.Update(sql, GetParameters(agency));
+        }
+
+
+        public static int InSertAgency(Agency agency)
+        {
+            string sql = "insert into agency values(@ano, @aname, @asex, @aphone, @aremark);";
+
+            return SQLHelper.Update(sql, GetParameters(agency));
+        }
+
+        //获取参数
+        private static SqlParameter[] GetParameters(Agency agency)
+        {
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("@ano", agency.Ano),
@@ -73,7 +89,7 @@ namespace 医药管理系统wpf.ViewModels.Manager
                 new SqlParameter("@aremark", agency.Aremark),
             };
 
-            return SQLHelper.Update(sql, sqlParameters );
+            return sqlParameters;
         }
     }
 }

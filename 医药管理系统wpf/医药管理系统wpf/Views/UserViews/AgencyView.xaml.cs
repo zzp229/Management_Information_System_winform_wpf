@@ -21,12 +21,12 @@ namespace 医药管理系统wpf.Views
     /// </summary>
     public partial class AgencyView : Window
     {
-        public AgencyView(Agency agency)
+        public AgencyView(Agency agency, bool isEdit)
         {
             InitializeComponent();
 
             //绑定
-            this.DataContext = new AgencyViewModel(agency);
+            this.DataContext = new AgencyViewModel(agency, isEdit);
         }
     }
 }

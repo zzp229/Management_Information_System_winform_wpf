@@ -55,7 +55,5 @@ C:\作业\大三上\数据库应用系统\medicine_Management_Information_System
 C:\作业\大三上\数据库应用系统\medicine_Management_Information_System_winform_wpf\医药管理系统wpf\医药管理系统wpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\作业\大三上\数据库应用系统\medicine_Management_Information_System_winform_wpf\医药管理系统wpf\医药管理系统wpf\obj\Debug\Views\UserViews\AgencyView.g.cs
 C:\作业\大三上\数据库应用系统\medicine_Management_Information_System_winform_wpf\医药管理系统wpf\医药管理系统wpf\obj\Debug\Views\UserViews\ClientView.g.cs
-C:\作业\大三上\数据库应用系统\medicine_Management_Information_System_winform_wpf\医药管理系统wpf\医药管理系统wpf\obj\Debug\Views\UserViews\MedicineView.g.cs
 C:\作业\大三上\数据库应用系统\medicine_Management_Information_System_winform_wpf\医药管理系统wpf\医药管理系统wpf\obj\Debug\Views\UserViews\AgencyView.baml
 C:\作业\大三上\数据库应用系统\medicine_Management_Information_System_winform_wpf\医药管理系统wpf\医药管理系统wpf\obj\Debug\Views\UserViews\ClientView.baml
-C:\作业\大三上\数据库应用系统\medicine_Management_Information_System_winform_wpf\医药管理系统wpf\医药管理系统wpf\obj\Debug\Views\UserViews\MedicineView.baml

@@ -152,10 +152,7 @@
                     <i:InvokeCommandAction Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItem.Ano, ElementName=dataGrid}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-
         </DataGrid>
-        
-        
 
 
 

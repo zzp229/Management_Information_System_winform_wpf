@@ -30,7 +30,7 @@ namespace 医药管理系统wpf.ViewModels
             DelCommand = new RelayCommand<string>(t =>Del(t));
             EditCommand = new RelayCommand<string>(t=>Edit(t));
 
-            //传递消息
+            //传递消息，判断编辑窗口是否点击确定
             Messenger.Default.Register<CloseWindowMessage>(this, HandleCloseWindowMessage);
 
             //鼠标右键
@@ -38,6 +38,7 @@ namespace 医药管理系统wpf.ViewModels
         }
 
         #region 判断AgencyView是否点击了确认按钮
+
         private void HandleCloseWindowMessage(CloseWindowMessage message)
         {
             // 处理窗口的返回值
@@ -260,12 +261,11 @@ namespace 医药管理系统wpf.ViewModels
             if(Ano != null)
             {
                 Agency agency = AgencyManager.GetAgencyByAno(Ano);
-                AgencyView agencyView = new AgencyView(agency);
+                AgencyView agencyView = new AgencyView(agency, false);
                 //绑定ViewModel
-                bool? @bool = agencyView.ShowDialog();
+                agencyView.ShowDialog();
             }
-            
-
+          
         }
     }
 

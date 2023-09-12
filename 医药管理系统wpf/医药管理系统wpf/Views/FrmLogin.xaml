@@ -67,7 +67,7 @@
 
 
         <!--登录退出按钮-->
-        <Button Command="{Binding LoginCommand}" x:Name="btn_Login" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="40" Content="登录" FontSize="26" Margin="0,0,0,69" Grid.RowSpan="2"></Button>
+        <Button Command="{Binding LoginCommand}" x:Name="btn_Login" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="40" Content="退出" FontSize="26"></Button>
         <Button Command="{Binding ExitCommand}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Height="40" Content="退出" FontSize="26"></Button>
         <Button Command="{Binding RegisterCommand}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100" Height="40" Content="注册" FontSize="26"></Button>
     </Grid>

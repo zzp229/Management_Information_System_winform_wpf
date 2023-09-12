@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using 医药管理系统wpf.ViewModels;
 
 namespace 医药管理系统wpf
 {
@@ -22,6 +23,9 @@ namespace 医药管理系统wpf
         public FrmRegister()
         {
             InitializeComponent();
+
+            FrmRegisterViewModel viewModel = new FrmRegisterViewModel();
+            this.DataContext = viewModel;
         }
     }
 }

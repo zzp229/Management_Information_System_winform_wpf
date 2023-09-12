@@ -47,7 +47,7 @@ namespace 医药管理系统wpf.ViewModels
             //MessageBox.Show(dialogResult.ToString());
             if(dialogResult)
             {
-                MessageBox.Show("保存成功！");
+                //如果是修改了的就更新一下视图
                 FillDataGrid(); //更新一下列表
             }
         }

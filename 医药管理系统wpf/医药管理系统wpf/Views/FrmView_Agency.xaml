@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:医药管理系统wpf" 
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="FrmView_Agency" Height="643" Width="806"
         WindowStartupLocation="CenterScreen">
@@ -32,10 +33,26 @@
 
         <!--设置行样式-->
         <Style x:Key="dgRowStyle" TargetType="DataGridRow">
+
             <Style.Triggers>
+                <!-- 当IsSelected为True时，设置背景为Green -->
                 <Trigger Property="IsSelected" Value="True">
                     <Setter Property="Background" Value="Green" />
                 </Trigger>
+
+                <!-- 当IsMouseOver为True时，设置背景为#f4f6ee -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f4f6ee" />
+                </Trigger>
+
+                <!-- 当同时满足IsSelected为True和IsMouseOver为True时，设置背景为绿色，覆盖上面的设置 -->
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True" />
+                        <Condition Property="IsMouseOver" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="Green" />
+                </MultiTrigger>
             </Style.Triggers>
         </Style>
 
@@ -138,12 +155,15 @@
 
             <!--行样式-->
             <DataGrid.RowStyle>
-                <Style BasedOn="{StaticResource dgRowStyle}" TargetType="DataGridRow"></Style>
+                <Style BasedOn="{StaticResource dgRowStyle}" TargetType="DataGridRow">
+                    
+                </Style>
             </DataGrid.RowStyle>
 
             <!--表格样式-->
             <DataGrid.CellStyle>
-                <Style BasedOn="{StaticResource dgCellStyle}" TargetType="DataGridCell"></Style>
+                <Style BasedOn="{StaticResource dgCellStyle}" TargetType="DataGridCell">
+                </Style>
             </DataGrid.CellStyle>
 
             <!--实现双击也可以编辑-->

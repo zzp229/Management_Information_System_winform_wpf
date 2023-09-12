@@ -40,13 +40,13 @@
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13">请输入信息进行注册</Label>
         <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" >姓名：</Label>
         <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom">角色：</Label>
-        <TextBox x:Name="txt_LoginName" Grid.Row="3" Grid.Column="1" Margin="0,0,7,13"></TextBox>
-        <ComboBox Name="cmb_Role" Grid.Row="3" Grid.Column="2" Margin="0,0,0,13"></ComboBox>
+        <TextBox Text="{Binding LoginName}" x:Name="txt_LoginName" Grid.Row="3" Grid.Column="1" Margin="0,0,7,13"></TextBox>
+        <ComboBox ItemsSource="{Binding RoleList}" SelectedItem="{Binding RoleSeleted}" Name="cmb_Role" Grid.Row="3" Grid.Column="2" Margin="0,0,0,13"></ComboBox>
         <Label Grid.Row="4" Grid.Column="1" >账号：</Label>
-        <TextBox x:Name="txt_LoginId" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+        <TextBox Text="{Binding LoginId}" x:Name="txt_LoginId" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
         <Label Grid.Row="6" Grid.Column="1" >密码：</Label>
-        <TextBox x:Name="txt_LoginPwd" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-        <Button x:Name="btn_Register" Width="75" Height="31" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2">立即注册</Button>
+        <TextBox Text="{Binding LoginPwd}" x:Name="txt_LoginPwd" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+        <Button Command="{Binding RegisterCommand}" x:Name="btn_Register" Width="75" Height="31" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2">立即注册</Button>
     </Grid>
 </Window>
     

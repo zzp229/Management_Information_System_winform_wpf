@@ -35,6 +35,7 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
             this.IsEdit = isEdit;
         }
 
+
         #region 属性
         private List<Char> asexSource;
         public List<Char> AsexSource
@@ -112,7 +113,7 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
                     int a = AgencyManager.UpdateAgencyByAno(agency);    //这个绑定一个类，不知道能不能修改成功
                     if(a > 0)
                     {
-                        MessageBox.Show("修改成功！");
+                        MessageBox.Show("修改成功！");   //这个才是判断时候修改成功的
                     }
                 }
                 else

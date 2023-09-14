@@ -26,17 +26,6 @@ namespace 医药管理系统wpf.Views
             InitializeComponent();
             FrmLoginViewModel model = new FrmLoginViewModel();
             this.DataContext = model;
-
-            
-            
-            this.Loaded += FrmLogin_Loaded;
         }
-
-
-        private void FrmLogin_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.btn_Login.Focus();
-        }
-
     }
 }

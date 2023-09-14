@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:医药管理系统wpf"
         mc:Ignorable="d"
-        Title="FrmMain" Height="522" Width="698"
+        Title="FrmMain" Height="722" Width="898"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -31,8 +31,8 @@
             <ColumnDefinition Width="15*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center">欢迎***登录医药管理系统</Label>
-        <Button Grid.Row="0" Grid.Column="3" Margin="9, 5, 9, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15, 5">注销账号</Button>
+        <Label Content="{Binding Title}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Button Command="{Binding LogoutCommand}" Grid.Row="0" Grid.Column="3" Margin="9, 5, 9, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15, 5">注销账号</Button>
         <Label Grid.Row="1" Grid.Column="1">查询：</Label>
         <Label Grid.Row="1" Grid.Column="2">录入：</Label>
         <ComboBox ItemsSource="{Binding InquireList}" SelectedItem="{Binding Inquired}" Name="cmb_Inquire" Grid.Row="2" Grid.Column="1" Margin="0, 5, 9, 0"></ComboBox>

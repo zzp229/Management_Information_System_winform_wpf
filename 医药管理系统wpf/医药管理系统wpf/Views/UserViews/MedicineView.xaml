@@ -1,11 +1,11 @@
-﻿<Window x:Class="医药管理系统wpf.Views.AgencyView"
+﻿<Window x:Class="医药管理系统wpf.Views.UserViews.MedicineView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:医药管理系统wpf.Views"
+        xmlns:local="clr-namespace:医药管理系统wpf.Views.UserViews"
         mc:Ignorable="d"
-        Title="AgencyView" Height="450" Width="400"
+        Title="添加医药" Height="450" Width="400"
         WindowStartupLocation="CenterScreen"
         Name="window"
         >
@@ -25,29 +25,25 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        
+
         <Label VerticalAlignment="Center" Margin="100 10">编号：</Label>
         <!--设置下面两个只显示一个-->
-        <Label Content="{Binding agency.Ano}"  VerticalAlignment="Center" HorizontalAlignment="Center"
+        <Label Content="{Binding medicine.Mno}"  VerticalAlignment="Center" HorizontalAlignment="Center"
                Visibility="{Binding IsLableVisible, Converter={StaticResource BoolToVis}}"></Label>
-        <TextBox Text="{Binding agency.Ano}" Width="100" Height="20" Grid.Row="0"
+        <TextBox Text="{Binding medicine.Mno}" Width="100" Height="20" Grid.Row="0"
                  Visibility="{Binding IsTextBoxVisible, Converter={StaticResource BoolToVis}}"
                  ></TextBox>
 
-        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="1">姓名：</Label>
-        <TextBox Text="{Binding agency.Aname}" Width="100" Height="20" Grid.Row="1"></TextBox>
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="1">名称：</Label>
+        <TextBox Text="{Binding medicine.Mname}" Width="100" Height="20" Grid.Row="1"></TextBox>
 
-        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="2">性别：</Label>
-        <ComboBox ItemsSource="{Binding AsexSource}" SelectedItem="{Binding AsexSeleted}" Width="100" Height="20" Grid.Row="2"></ComboBox>
+        <Label VerticalAlignment="Center" Margin="80 10" Grid.Row="2">服用方法：</Label>
+        <ComboBox ItemsSource="{Binding MmodeList}" SelectedItem="{Binding Mmode}" Width="100" Height="20" Grid.Row="2"></ComboBox>
 
-        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="3">电话：</Label>
-        <TextBox Text="{Binding agency.Aphone}" Width="100" Height="20" Grid.Row="3"></TextBox>
-
-        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="4">备注：</Label>
-        <TextBox Text="{Binding agency.Aremark}" Width="100" Height="20" Grid.Row="4"></TextBox>
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="3">功效：</Label>
+        <TextBox Text="{Binding medicine.Mefficacy}" Width="100" Height="20" Grid.Row="3"></TextBox>
 
         <!--给保存按钮使用这里绑定将整个窗口传过去，关闭，设置窗口返回状态-->
         <Button Grid.Row="5" Width="80" Height="30"
@@ -56,4 +52,5 @@
 
     </Grid>
 </Window>
+
 

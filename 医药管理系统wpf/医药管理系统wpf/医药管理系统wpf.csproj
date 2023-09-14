@@ -71,7 +71,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MediDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MediDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Manager\AdminManager.cs" />
     <Compile Include="ViewModels\Manager\AgencyManager.cs" />
+    <Compile Include="ViewModels\Manager\MedicineManager.cs" />
     <Compile Include="ViewModels\UserViewsModelView\AgencyViewModel.cs" />
     <Compile Include="ViewModels\UserViewsModelView\ClientViewModel.cs" />
     <Compile Include="ViewModels\UserViewsModelView\MedicineViewModel.cs" />
@@ -82,7 +89,10 @@
     <Compile Include="Views\UserViews\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PasswordBindingHelper.cs" />
+    <Compile Include="Views\Helper\PasswordBindingHelper.cs" />
+    <Compile Include="Views\UserViews\MedicineView.xaml.cs">
+      <DependentUpon>MedicineView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\UserViews\AgencyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserViews\MedicineView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Views\FrmMain.xaml.cs">
@@ -171,6 +185,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="MediDBDataSet.xsc">
+      <DependentUpon>MediDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MediDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MediDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MediDBDataSet.xss">
+      <DependentUpon>MediDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -180,6 +205,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Views\Picture\test.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

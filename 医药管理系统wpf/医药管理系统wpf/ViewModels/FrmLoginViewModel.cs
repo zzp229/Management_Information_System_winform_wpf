@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using 医药管理系统wpf.Models;
 using 医药管理系统wpf.ViewModels.Manager;
+using 医药管理系统wpf.Views.Helper;
+
 
 namespace 医药管理系统wpf.ViewModels
 {
@@ -135,6 +137,9 @@ namespace 医药管理系统wpf.ViewModels
             }
             else
             {
+                //补充好这个静态用户
+                AdminManager.currentAdmin = AdminManager.GetAdminById(LoginId);
+                
                 //可以登录
                 FrmMain frmMain = new FrmMain();
                 frmMain.ShowDialog();

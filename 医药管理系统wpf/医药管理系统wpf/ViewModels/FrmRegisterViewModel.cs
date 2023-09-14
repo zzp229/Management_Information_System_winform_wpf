@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using 医药管理系统wpf.Service;
 
 namespace 医药管理系统wpf.ViewModels
 {
-    internal class FrmRegisterViewModel
+    internal class FrmRegisterViewModel:ViewModelBase
     {
         public FrmRegisterViewModel()
         {
@@ -24,9 +25,11 @@ namespace 医药管理系统wpf.ViewModels
             };
             RoleSeleted = "患者";
 
+            //测试
             //实例化Command
-            RegisterCommand = new RelayCommand(ForRegisterCommand);
+            CloseWindowCommand = new RelayCommand<object>(t => CloseWindow(t));
         }
+
 
         #region 属性
         private string loginName;
@@ -72,18 +75,41 @@ namespace 医药管理系统wpf.ViewModels
 
         #region Command
         public RelayCommand RegisterCommand { get; set; }
+        public RelayCommand<object> CloseWindowCommand { get; set; }
         #endregion
 
 
         #region Method
-        private void ForRegisterCommand()
+        
+        /// <summary>
+        /// 点击按钮后关闭窗口
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void CloseWindow(object parameter)
+        {
+            //关闭前将数据写入数据库
+            InsertToSql();
+            
+            //关闭窗口
+            var window = parameter as Window;
+            if (window != null)
+            {
+                window.Close();
+            }
+        }
+
+
+        /// <summary>
+        /// 数据写入数据库
+        /// </summary>
+        private void InsertToSql()
         {
             string sql = "insert into users values(@LoginId, @LoginPwd, @LoginName, @Role);";
             int role = 0;
-            if(RoleSeleted == RoleList[0])
+            if (RoleSeleted == RoleList[0])
             {
                 role = 0;
-            } 
+            }
             else if (RoleSeleted == RoleList[1])
             {
                 role = 1;

@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:医药管理系统wpf" xmlns:viewmodels="clr-namespace:医药管理系统wpf.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:FrmMainViewModel}"
         mc:Ignorable="d"
-        Title="FrmLogin" Height="450" Width="800"
+        Title="主页" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
+        Icon="./Picture/test.ico"
         >
     <Window.Resources>
         <Style TargetType="Control">
@@ -35,7 +36,9 @@
         <!--账号框-->
         <TextBox x:Name="txt_LoginId" Text="{Binding LoginId}" Grid.Row="1" Grid.Column="1" Height="30" 
                  HorizontalContentAlignment="Center"
-                 VerticalAlignment="Bottom" Margin="5" VerticalContentAlignment="Center">
+                 VerticalAlignment="Bottom" Margin="5" VerticalContentAlignment="Center"
+                 
+                 >
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Style.Triggers>
@@ -67,7 +70,7 @@
 
 
         <!--登录退出按钮-->
-        <Button Command="{Binding LoginCommand}" x:Name="btn_Login" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="40" Content="退出" FontSize="26"></Button>
+        <Button Command="{Binding LoginCommand}" x:Name="btn_Login" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Height="40" Content="登录" FontSize="26"></Button>
         <Button Command="{Binding ExitCommand}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Height="40" Content="退出" FontSize="26"></Button>
         <Button Command="{Binding RegisterCommand}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100" Height="40" Content="注册" FontSize="26"></Button>
     </Grid>

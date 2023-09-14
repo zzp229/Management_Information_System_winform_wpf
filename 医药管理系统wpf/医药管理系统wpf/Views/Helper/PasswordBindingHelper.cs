@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace 医药管理系统wpf
 {
+    /// <summary>
+    /// 这样才能让PasswordBox像TextBox一样使用
+    /// </summary>
     public class PasswordBindingHelper
     {
         public static readonly DependencyProperty PasswordProperty =

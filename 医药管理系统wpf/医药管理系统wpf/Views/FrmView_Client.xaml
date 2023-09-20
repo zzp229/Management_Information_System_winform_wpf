@@ -1,12 +1,208 @@
 ﻿<Window x:Class="医药管理系统wpf.FrmView_Client"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:医药管理系统wpf"
+        xmlns:local="clr-namespace:医药管理系统wpf" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="FrmView_Client" Height="547" Width="806">
+        Title="FrmView_Agency" Height="643" Width="1006"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- 删除按钮样式 -->
+        <Style x:Key="DeleteButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="DarkRed"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- 编辑按钮样式 -->
+        <Style x:Key="EditButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="DarkGreen"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!--设置行样式-->
+        <Style x:Key="dgRowStyle" TargetType="DataGridRow">
+
+            <Style.Triggers>
+                <!-- 当IsSelected为True时，设置背景为Green -->
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Green" />
+                </Trigger>
+
+                <!-- 当IsMouseOver为True时，设置背景为#f4f6ee -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f4f6ee"/>
+                </Trigger>
+
+                <!-- 当同时满足IsSelected为True和IsMouseOver为True时，设置背景为绿色，覆盖上面的设置 -->
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True" />
+                        <Condition Property="IsMouseOver" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="Green" />
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--设置表格样式-->
+        <Style x:Key="dgCellStyle" TargetType="DataGridCell">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition Height="23*"></RowDefinition>
+            <RowDefinition Height="55*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">经办人信息查询</Label>
+        <Border Grid.Row="0" Margin="80 0 80 5" BorderBrush="Black" BorderThickness="0 0 0 1"></Border>
+
+        <!--选择条件Box-->
+        <GroupBox Grid.Row="1" Margin="5" Header="请选择查询的信息：">
+            <GroupBox.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">编号：</Label>
+                    <TextBox Text="{Binding Cno}" Grid.Row="0" Grid.Column="0" Width="70" Height="25" Margin="15 0 0 0"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">姓名：</Label>
+                    <TextBox Text="{Binding Cname}" Grid.Row="1" Grid.Column="0" Width="70" Height="25" Margin="15 0 0 0"></TextBox>
+                    <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">性别：</Label>
+                    <ComboBox ItemsSource="{Binding CsexSource}" SelectedItem="{Binding CsexSeleted}" Name="cmb_asex" Grid.Row="0" Grid.Column="1" Width="70" Height="25" Margin="15 0 0 0"></ComboBox>
+                    <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">年龄：</Label>
+                    <TextBox Text="{Binding Cage}" Grid.Row="1" Grid.Column="1" Width="70" Height="25" Margin="15 0 0 0"></TextBox>
+                    
+                    <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">电话：</Label>
+                    <TextBox Text="{Binding Cphone}" Grid.Row="0" Grid.Column="2" Width="70" Height="25" Margin="15 0 0 0"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">住址：</Label>
+                    <TextBox Text="{Binding Caddress}" Grid.Row="1" Grid.Column="2" Width="70" Height="25" Margin="15 0 0 0"></TextBox>
+
+                    <Label Grid.Row="0" Grid.Column="3" VerticalAlignment="Center">症状：</Label>
+                    <TextBox Text="{Binding Csymptom}" Grid.Row="0" Grid.Column="3" Width="70" Height="25" Margin="15 0 0 0"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="3" VerticalAlignment="Center">已购药品：</Label>
+                    <TextBox Text="{Binding Mno}" Grid.Row="1" Grid.Column="3" Width="70" Height="25" Margin="58 0 0 0"></TextBox>
+                    <Label Grid.Row="0" Grid.Column="4" VerticalAlignment="Center">经办人：</Label>
+                    <TextBox Text="{Binding Ano}" Grid.Row="0" Grid.Column="4" Width="70" Height="25" Margin="58 0 0 0"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="4" VerticalAlignment="Center">备注：</Label>
+                    <TextBox Text="{Binding Cremark}" Grid.Row="1" Grid.Column="4" Width="70" Height="25" Margin="15 0 0 0"></TextBox>
+                    
+                    <Label Grid.Row="0" Grid.Column="5" VerticalAlignment="Center">录入日期：</Label>
+                    <TextBox Text="{Binding Cdate}" Grid.Row="0" Grid.Column="5" Width="70" Height="25" Margin="58 0 0 0"></TextBox>
+
+                    <Button Command="{Binding QueryCommand}" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50">查询</Button>
+                </Grid>
+            </GroupBox.Content>
+        </GroupBox>
+
+
+        <!--中间的数据框-->
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Clients}" Grid.Row="2" Margin="8" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+
+            <DataGrid.Columns>
+                <!-- 其他数据列 -->
+                <DataGridTextColumn Header="编号" Binding="{Binding Cno}" Width="90"/>
+                <DataGridTextColumn Header="姓名" Binding="{Binding Cname}" Width="70"/>
+                <DataGridTextColumn Header="性别" Binding="{Binding CsexSeleted}" Width="50"/>
+                <DataGridTextColumn Header="年龄" Binding="{Binding Cage}" Width="50"/>
+                <DataGridTextColumn Header="住址" Binding="{Binding Caddress}" Width="150"/>
+                <DataGridTextColumn Header="电话" Binding="{Binding Cphone}" Width="100"/>
+                <DataGridTextColumn Header="症状" Binding="{Binding Csymptom}" Width="50"/>
+                <DataGridTextColumn Header="已购药品" Binding="{Binding Mno}" Width="90"/>
+                <DataGridTextColumn Header="经办人" Binding="{Binding Ano}" Width="50"/>
+                <DataGridTextColumn Header="录入日期" Binding="{Binding Cdate}" Width="70"/>
+                <DataGridTextColumn Header="备注" Binding="{Binding Cremark}" Width="70" />
+                <!-- 添加更多列，根据你的需求 -->
+
+                <!-- 删除按钮列 -->
+                <DataGridTemplateColumn Header="操作">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- 删除按钮 -->
+                                <!--这里的Command需要有个DataContext前缀，因为单元格的DataContext是绑定的数据项-->
+                                <Button Content="删除" Style="{StaticResource DeleteButtonStyle}" 
+                                        CommandParameter="{Binding Cno}"
+                                        Command="{Binding DataContext.DelCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"/>
+
+                                <!-- 编辑按钮 -->
+                                <Button Content="编辑" Style="{StaticResource EditButtonStyle}" 
+                                        CommandParameter="{Binding Cno}"
+                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+            <!--右键-->
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="删除选中项" Command="{Binding DeleteSelectedCommand}" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+
+            <!--行样式-->
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource dgRowStyle}" TargetType="DataGridRow">
+
+                </Style>
+            </DataGrid.RowStyle>
+
+            <!--表格样式-->
+            <DataGrid.CellStyle>
+                <Style BasedOn="{StaticResource dgCellStyle}" TargetType="DataGridCell">
+                </Style>
+            </DataGrid.CellStyle>
+
+            <!--实现双击也可以编辑-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItem.Cno, ElementName=dataGrid}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </DataGrid>
+
+
+
+        <!--下面的按钮-->
+        <WrapPanel Grid.Row="3" FlowDirection="RightToLeft">
+            <Button Padding="15, 5" Margin="7">打印</Button>
+            <Button Padding="15, 5" Margin="7">报表</Button>
+            <Button Padding="7, 5" Margin="7">导出到Excel</Button>
+        </WrapPanel>
+
     </Grid>
 </Window>

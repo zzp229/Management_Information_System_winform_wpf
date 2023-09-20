@@ -8,6 +8,11 @@ namespace 医药管理系统wpf.Models
 {
     public class Client
     {
+        public Client()
+        {
+            Cdate = DateTime.Now;
+        }
+
         private string cno;
         private string cname;
         private char csex;

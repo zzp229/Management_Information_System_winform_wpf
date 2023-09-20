@@ -24,8 +24,10 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
                 '男',
                 '女'
             };
-            this.agency = agency;
             AsexSeleted = agency.Asex;
+
+
+            this.agency = agency;
             CloseWindowCommand = new RelayCommand<object>(t => CloseWindow(t));
 
             //是否可以修改学号

@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="ViewModels\Manager\AdminManager.cs" />
     <Compile Include="ViewModels\Manager\AgencyManager.cs" />
+    <Compile Include="ViewModels\Manager\ClientManager.cs" />
     <Compile Include="ViewModels\Manager\MedicineManager.cs" />
     <Compile Include="ViewModels\UserViewsModelView\AgencyViewModel.cs" />
     <Compile Include="ViewModels\UserViewsModelView\ClientViewModel.cs" />

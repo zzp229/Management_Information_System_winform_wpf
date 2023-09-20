@@ -15,6 +15,7 @@ using GalaSoft.MvvmLight.Messaging;
 using 医药管理系统wpf.ViewModels.Manager;
 using 医药管理系统wpf.Views.UserViews;
 
+
 namespace 医药管理系统wpf.ViewModels
 {
     internal class FrmMainViewModel:ViewModelBase
@@ -38,7 +39,7 @@ namespace 医药管理系统wpf.ViewModels
 
             //录入
             CheckInList = listSelete;
-            CheckIn = CheckInList[0];
+            CheckIn = CheckInList[2];
 
             //传递消息，判断编辑窗口是否点击确定
             Messenger.Default.Register<CloseWindowMessage>(this, HandleCloseWindowMessage);
@@ -136,7 +137,9 @@ namespace 医药管理系统wpf.ViewModels
             } 
             else
             {
-
+                Client client = new Client();
+                ClientView clientView = new ClientView(client, true);
+                clientView.ShowDialog();
             }
         }
 

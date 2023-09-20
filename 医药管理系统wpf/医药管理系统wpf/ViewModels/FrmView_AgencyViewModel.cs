@@ -175,7 +175,6 @@ namespace 医药管理系统wpf.ViewModels
                     Asex = char.Parse(row["asex"].ToString())
                 };
                 Agencies.Add(agency1);
-                
             }
         }
 
@@ -187,7 +186,7 @@ namespace 医药管理系统wpf.ViewModels
         private string GetSqlCondition()
         {
             bool isNull = false;    //判断是否有条件
-            bool isAnd = false; //判断是否有添加
+            bool isAnd = false; //判断是否有添加and，第一个条件不用
             string sqlCondition = " where ";
 
             if(!string.IsNullOrEmpty(Ano))

@@ -10,10 +10,10 @@ namespace 医药管理系统wpf.ViewModels.Manager
 {
     public class InfoManager
     {
-        public DataTable GetClientInfo()
+        public DataTable GetClientInfo(string sqlCondition)
         {
             //这里只是测试
-            string sql = "select * from client;";
+            string sql = "select * from client" + sqlCondition;
             DataTable dt = SQLHelper.GetDataSet(sql).Tables[0];
 
             return dt;

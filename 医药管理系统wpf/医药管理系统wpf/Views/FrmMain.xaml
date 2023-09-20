@@ -38,7 +38,9 @@
         <ComboBox ItemsSource="{Binding InquireList}" SelectedItem="{Binding Inquired}" Name="cmb_Inquire" Grid.Row="2" Grid.Column="1" Margin="0, 5, 9, 0"></ComboBox>
         <ComboBox ItemsSource="{Binding CheckInList}" SelectedItem="{Binding CheckIn}" Grid.Row="2" Grid.Column="2" Margin="9, 5, 9, 0"></ComboBox>
         <Button Command="{Binding InquireCommand}" Grid.Row="3" Grid.Column="1" Margin="0, 5, 9, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15, 5">查询</Button>
-        <Button Command="{Binding CheckInCommand}" Grid.Row="3" Grid.Column="2" Margin="9, 5, 9, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15, 5">录入</Button>
+        <Button Command="{Binding CheckInCommand}" Grid.Row="3" Grid.Column="2" Margin="9, 5, 9, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15, 5"
+                IsDefault="True"
+                >录入</Button>
         
     </Grid>
 </Window>

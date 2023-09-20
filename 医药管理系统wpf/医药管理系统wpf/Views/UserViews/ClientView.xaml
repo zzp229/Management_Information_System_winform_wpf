@@ -3,11 +3,86 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:医药管理系统wpf.Views"
+        xmlns:local="clr-namespace:医药管理系统wpf.Views.UserViews"
         mc:Ignorable="d"
-        Title="ClientView" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        Title="顾客信息" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Name="window"
+        >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <!--用来判断是否隐藏-->
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Label VerticalAlignment="Center" Margin="60 10">编号：</Label>
+        <!--设置下面两个只显示一个-->
+        <Label Content="{Binding client.Cno}"  VerticalAlignment="Center" HorizontalAlignment="Center"
+               Visibility="{Binding IsLableVisible, Converter={StaticResource BoolToVis}}"></Label>
+        <TextBox Text="{Binding client.Cno}" Width="100" Height="20" Grid.Row="0"
+                 Visibility="{Binding IsTextBoxVisible, Converter={StaticResource BoolToVis}}"
+                 ></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="60 10" Grid.Row="1">姓名：</Label>
+        <TextBox Text="{Binding client.Cname}" Width="100" Height="20" Grid.Row="1"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="60 10" Grid.Row="2">性别：</Label>
+        <ComboBox ItemsSource="{Binding CsexSource}" SelectedItem="{Binding CsexSeleted}" Width="100" Height="20" Grid.Row="2"></ComboBox>
+
+        <Label VerticalAlignment="Center" Margin="60 10" Grid.Row="3">年龄：</Label>
+        <TextBox Text="{Binding client.Cage}" Width="100" Height="20" Grid.Row="3"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="60 10" Grid.Row="4">住址：</Label>
+        <TextBox Text="{Binding client.Caddress}" Width="100" Height="20" Grid.Row="4"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="60 10" Grid.Row="5" Grid.Column="0">备注：</Label>
+        <TextBox Text="{Binding client.Cremark}" Width="100" Height="20" Grid.Row="5" Grid.Column="0"></TextBox>
+
         
+        
+        
+        <!--右边的内容-->
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="0" Grid.Column="1">电话：</Label>
+        <TextBox Text="{Binding client.Cphone}" Width="100" Height="20" Grid.Row="0" Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="1" Grid.Column="1">症状：</Label>
+        <TextBox Text="{Binding client.Csymptom}" Width="100" Height="20" Grid.Row="1" Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="2" Grid.Column="1">已购药品：</Label>
+        <TextBox Text="{Binding client.Mno}" Width="100" Height="20" Grid.Row="2" Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Center" Margin="100 10" Grid.Row="3" Grid.Column="1">经办人：</Label>
+        <TextBox Text="{Binding client.Ano}" Width="100" Height="20" Grid.Row="3" Grid.Column="1"></TextBox>
+
+        <Label Margin="100 10" Grid.Row="4" Grid.Column="1">录入日期：</Label>
+        <!--这个要看情况使用哪一个-->
+        <!--<TextBox Text="{Binding client.Cdate}" Width="100" Height="20" Grid.Row="4" Grid.Column="1"></TextBox>-->
+        <Label Margin="170 10" Content="{Binding CdateFormatted}" Grid.Row="4" Grid.Column="1"></Label>
+
+        <!--给保存按钮使用这里绑定将整个窗口传过去，关闭，设置窗口返回状态-->
+        <Button Grid.Row="5" Width="80" Height="30" Grid.Column="1"
+        Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=window}"
+        >保存</Button>
+
     </Grid>
 </Window>
+

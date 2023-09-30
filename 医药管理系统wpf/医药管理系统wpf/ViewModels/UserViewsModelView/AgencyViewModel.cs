@@ -48,6 +48,9 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
 
 
         private char asexSeleted;
+        /// <summary>
+        /// 选择的性别
+        /// </summary>
         public char AsexSeleted
         {
             get { return asexSeleted; }
@@ -112,6 +115,8 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
                 //根据IsEdit判断时候是添加还是修改
                 if (!IsEdit)
                 {
+                    //性别的添加进去
+                    agency.Asex = AsexSeleted;
                     int a = AgencyManager.UpdateAgencyByAno(agency);    //这个绑定一个类，不知道能不能修改成功
                     if(a > 0)
                     {

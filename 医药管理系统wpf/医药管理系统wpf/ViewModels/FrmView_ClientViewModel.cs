@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using 医药管理系统wpf.Models;
 using 医药管理系统wpf.ViewModels.Manager;
 
@@ -171,6 +172,14 @@ namespace 医药管理系统wpf.ViewModels
 
 
         #region Method
+        //View中的DataGrid要这样子传过来才行，用来更新数据用
+        private DataGrid dataGrid;
+        public void SetDataGrid(DataGrid grid)
+        {
+            dataGrid = grid;
+        }
+
+
         /// <summary>
         /// 生成sql命令中的条件
         /// </summary>
@@ -284,11 +293,7 @@ namespace 医药管理系统wpf.ViewModels
             if (isNull)
                 return sqlCondition;
             else
-                return null;
-
-            //test
-
-            
+                return null;      
         }
 
 

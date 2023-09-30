@@ -12,6 +12,7 @@ namespace 医药管理系统wpf.Views.Helper
     internal class CloseWindowMessage
     {
         public bool AgencyView_DialogResult { get; set; }
+        public bool MedicineView_DialogResult { get; set; }
     }
 }
 

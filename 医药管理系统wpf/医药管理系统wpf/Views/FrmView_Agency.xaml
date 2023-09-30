@@ -114,7 +114,8 @@
 
         
         <!--中间的数据框-->
-        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Agencies}" Grid.Row="2" Margin="8" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Agencies}" Grid.Row="2" Margin="8" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             
             <DataGrid.Columns>
                 <!-- 其他数据列 -->

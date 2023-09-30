@@ -9,6 +9,9 @@ using 医药管理系统wpf.Models;
 using System.Windows;
 using 医药管理系统wpf.ViewModels.Manager;
 using GalaSoft.MvvmLight.Command;
+using 医药管理系统wpf.Views.Helper;
+
+using GalaSoft.MvvmLight.Messaging; //给Messager使用
 
 namespace 医药管理系统wpf.ViewModels.UserViewsModelView
 {
@@ -33,8 +36,7 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
             //这里还要设置关闭窗口的command，确认按钮用
             CloseWindowCommand = new RelayCommand<object>(t => CloseWindow(t)); //xaml会将窗口Window传进来
 
-            //默认选了个外用
-            Mmode = "内服";
+            Mmode = medicine.Mmode; //先选择
             this.IsEdit = isEdit;
         }
 
@@ -46,7 +48,7 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
         public string Mmode
         {
             get { return mmode; }
-            set { mmode = value; }
+            set { mmode = value; RaisePropertyChanged(); }
         }
 
         private List<string> mmodeList;
@@ -56,7 +58,7 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
         public List<string> MmodeList
         {
             get { return mmodeList; }
-            set { mmodeList = value; }
+            set { mmodeList = value; RaisePropertyChanged(); }
         }
 
         private Medicine _medicine;
@@ -66,7 +68,7 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
         public Medicine medicine
         {
             get { return _medicine; }
-            set { _medicine = value; }
+            set { _medicine = value; RaisePropertyChanged(); }
         }
 
         private bool isEdit;
@@ -76,7 +78,7 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
         public bool IsEdit
         {
             get { return isEdit; }
-            set { isEdit = value; }
+            set { isEdit = value; RaisePropertyChanged(); }
         }
         #endregion
 
@@ -96,11 +98,18 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
                 //根据IsEdit判断是添加还是修改
                 if(!IsEdit) //这个好像是修改的
                 {
+                    //更新一下选中的服用方法
+                    medicine.Mmode = Mmode;
+                    int a = MedicineManager.UpdateMedicineByMno(medicine);
+                    if(a > 0)
+                    {
+                        MessageBox.Show("修改成功！");
+                    }
 
                 }
                 else
                 {
-                    //添加服用方法
+                    //更新一下选中的服用方法
                     medicine.Mmode = Mmode;
                     //往数据库增加
                     int a = MedicineManager.InsertMedicine(medicine);
@@ -108,7 +117,14 @@ namespace 医药管理系统wpf.ViewModels.UserViewsModelView
                         MessageBox.Show("添加成功！");
                 }
 
-                //关闭窗口
+                //更新状态，状态在CloseWindowMessage类中
+                var message = new CloseWindowMessage
+                {
+                    MedicineView_DialogResult = true
+                };
+                Messenger.Default.Send(message);
+
+                //关闭窗口，然后到FrmView_Medicine中更新一下数据
                 window.Close();
             }
         }

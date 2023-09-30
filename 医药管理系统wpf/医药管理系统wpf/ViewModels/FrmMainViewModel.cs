@@ -35,11 +35,11 @@ namespace 医药管理系统wpf.ViewModels
             //初始化下拉框
             //查询
             InquireList = listSelete;
-            Inquired = InquireList[1];
+            Inquired = InquireList[2];  //debug
 
             //录入
             CheckInList = listSelete;
-            CheckIn = CheckInList[2];
+            CheckIn = CheckInList[2];   //方便调试
 
             //传递消息，判断编辑窗口是否点击确定
             Messenger.Default.Register<CloseWindowMessage>(this, HandleCloseWindowMessage);
@@ -124,10 +124,10 @@ namespace 医药管理系统wpf.ViewModels
         private void ForCheckInCommand()
         {
             if(checkIn == checkInList[0])
-            {
-                Medicine medicine = new Medicine();
-                MedicineView medicineView = new MedicineView(medicine, true);
-                medicineView.ShowDialog();
+            {      
+                Client client = new Client();
+                ClientView clientView = new ClientView(client, true);
+                clientView.ShowDialog();
             }
             else if(checkIn == checkInList[1])
             {
@@ -137,9 +137,9 @@ namespace 医药管理系统wpf.ViewModels
             } 
             else
             {
-                Client client = new Client();
-                ClientView clientView = new ClientView(client, true);
-                clientView.ShowDialog();
+                Medicine medicine = new Medicine();
+                MedicineView medicineView = new MedicineView(medicine, true);
+                medicineView.ShowDialog();
             }
         }
 

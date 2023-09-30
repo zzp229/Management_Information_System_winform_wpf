@@ -18,7 +18,7 @@ namespace 医药管理系统wpf.ViewModels.Manager
         /// </summary>
         /// <param name="cno"></param>
         /// <returns></returns>
-        private static Client GetClientByCno(string cno)
+        internal static Client GetClientByCno(string cno)
         {
             string sql = "select * from client where cno=@cno;";
 
@@ -46,6 +46,9 @@ namespace 医药管理系统wpf.ViewModels.Manager
 
             return client;
         }
+
+
+       
 
 
         /// <summary>

@@ -177,7 +177,6 @@
             <!--行样式-->
             <DataGrid.RowStyle>
                 <Style BasedOn="{StaticResource dgRowStyle}" TargetType="DataGridRow">
-
                 </Style>
             </DataGrid.RowStyle>
 

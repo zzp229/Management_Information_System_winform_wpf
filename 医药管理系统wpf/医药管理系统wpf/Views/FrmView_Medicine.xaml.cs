@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using 医药管理系统wpf.ViewModels;
 
 namespace 医药管理系统wpf
 {
@@ -22,6 +23,10 @@ namespace 医药管理系统wpf
         public FrmView_Medicine()
         {
             InitializeComponent();
+
+            FrmView_MedicineViewModel frmView_MedicineViewModel = new FrmView_MedicineViewModel();
+            this.DataContext = frmView_MedicineViewModel;
+            (DataContext as FrmView_MedicineViewModel)?.SetDataGrid(dataGrid);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace 医药管理系统wpf.ViewModels
             Messenger.Default.Register<CloseWindowMessage>(this, HandleCloseWindowMessage);
 
             //鼠标右键
-            DeleteSelectedCommand = new RelayCommand(DeleteSelected, CanDeleteSelected);    //第二个条件判断是否有选择
+            DeleteSelectedCommand = new RelayCommand(ForDelCommand, CanDeleteSelected);    //第二个条件判断是否有选择
         }
 
         #region 判断AgencyView是否点击了确认按钮
@@ -68,7 +68,7 @@ namespace 医药管理系统wpf.ViewModels
             return dataGrid?.SelectedItems.Count > 0;
         }
 
-        private void DeleteSelected()
+        private void ForDelCommand()
         {
             //遍历选中
             foreach (var selectedItem in dataGrid.SelectedItems.Cast<Agency>().ToList())
@@ -136,7 +136,7 @@ namespace 医药管理系统wpf.ViewModels
         public string AsexSeleted
         {
             get { return asexSeleted; }
-            set { asexSeleted = value; }
+            set { asexSeleted = value; RaisePropertyChanged(); }
         }
         #endregion
 
@@ -162,19 +162,23 @@ namespace 医药管理系统wpf.ViewModels
                 MessageBox.Show("没有内容");
                 return;
             }
-
-            Agencies = new ObservableCollection<Agency>();  //实例化集合，这个不能直接添加集合
-            foreach (DataRow row in ds.Rows)
+            //有数据就更新DataGrid绑定的数据
+            else
             {
-                Agency agency1 = new Agency()
+                Agencies = new ObservableCollection<Agency>();  //实例化集合，这个不能直接添加集合
+                foreach (DataRow row in ds.Rows)
                 {
-                    Aname = row["aname"].ToString(),
-                    Ano = row["ano"].ToString(),
-                    Aphone = row["aphone"].ToString(),
-                    Aremark = row["aremark"].ToString(),
-                    Asex = char.Parse(row["asex"].ToString())
-                };
-                Agencies.Add(agency1);
+                    Agency agency1 = new Agency()
+                    {
+                        Aname = row["aname"].ToString(),
+                        Ano = row["ano"].ToString(),
+                        Aphone = row["aphone"].ToString(),
+                        Aremark = row["aremark"].ToString(),
+                        Asex = char.Parse(row["asex"].ToString())
+                    };
+                    Agencies.Add(agency1);
+
+                }
             }
         }
 
@@ -264,7 +268,6 @@ namespace 医药管理系统wpf.ViewModels
                 //绑定ViewModel
                 agencyView.ShowDialog();
             }
-          
         }
     }
 
